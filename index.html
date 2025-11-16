@@ -33,8 +33,6 @@
     gap:20px;
     align-items:start;
   }
-
-  /* Header card */
   .header{
     grid-column: 1 / -1;
     background:var(--card);
@@ -54,8 +52,6 @@
     letter-spacing:.2px;
   }
   .brand p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
-
-  /* Left column: calendar card */
   .card{
     background:var(--card);
     border-radius:var(--radius);
@@ -89,7 +85,6 @@
     color:white;
     box-shadow: 0 8px 24px rgba(33,112,58,0.18);
   }
-
   .actions{display:flex;gap:10px;align-items:center;margin-top:14px}
   .btn{
     padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600;
@@ -98,14 +93,11 @@
   }
   .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(30,122,58,0.12); font-weight:700}
   .btn:active{transform:scale(.995)}
-  /* ripple */
   .ripple{
     position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s linear;
     background:rgba(255,255,255,0.4);
   }
   @keyframes ripple{to{transform:scale(4);opacity:0}}
-
-  /* Right column: tables */
   .panels{display:grid;gap:14px}
   .shift-card{
     background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(10,30,20,0.04);
@@ -116,99 +108,81 @@
   th,td{padding:10px 8px;text-align:left;border-bottom:1px dashed rgba(0,0,0,0.04)}
   th{font-size:13px;color:var(--muted)}
   .empty{color:var(--muted);padding:14px;text-align:center}
-
   .row-actions{display:flex;gap:6px;justify-content:flex-end}
   .icon-btn{border:none;background:transparent;cursor:pointer;font-weight:700;color:var(--accent)}
   .small-input{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
-
-  /* mini form */
   .add-row{display:flex;gap:8px;margin-top:10px}
   .add-row .btn{padding:8px 12px;font-size:14px;border-radius:10px}
-
-  /* responsive */
   @media (max-width:980px){
     .container{grid-template-columns:1fr; padding:10px}
   }
-
-  /* animations */
   @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-  /* little badge for selected date */
   .selected-info{font-size:13px;color:var(--muted);margin-top:8px}
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="brand">
-        <h1>মেট্রো নিটিং এন্ড ডাইং মিলস (ফ্যাক্টরি ২)</h1>
-        <p>চারাবাগ, আশুলিয়া, সাভার, ঢাকা</p>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-size:12px;color:var(--muted)">ডেভেলপ — শিফট ম্যানেজার UI</div>
-      </div>
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <h1>মেট্রো নিটিং এন্ড ডাইং মিলস (ফ্যাক্টরি ২)</h1>
+      <p>চারাবাগ, আশুলিয়া, সাভার, ঢাকা</p>
     </div>
-
-    <!-- Left: Calendar -->
-    <div class="card" id="calendarCard" aria-label="December 2025 calendar">
-      <div class="calendar-title">
-        <h2>December 2025</h2>
-        <div style="font-size:13px;color:var(--muted)">শুধু ডিসেম্বর ২০২৫</div>
-      </div>
-
-      <div class="calendar-grid" id="calendar">
-        <!-- weekdays -->
-        <div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="weekday">Sun</div>
-        <!-- days will be injected -->
-      </div>
-
-      <div class="selected-info" id="selInfo">কোনও দিন সিলেক্ট করা নেই</div>
-
-      <div class="actions">
-        <button class="btn" id="okBtn">OK</button>
-        <button class="btn secondary" id="clearBtn">Clear</button>
-      </div>
-    </div>
-
-    <!-- Right: Shift tables -->
-    <div class="panels">
-      <div class="shift-card" id="aShiftCard">
-        <h3>A Shift</h3>
-        <div id="aShiftBody"></div>
-      </div>
-
-      <div class="shift-card" id="bShiftCard">
-        <h3>B Shift</h3>
-        <div id="bShiftBody"></div>
-      </div>
-
-      <div class="shift-card" id="offShiftCard">
-        <h3>Off Day</h3>
-        <div id="offShiftBody"></div>
-      </div>
+    <div style="text-align:right;">
+      <div style="font-size:12px;color:var(--muted)">ডেভেলপ — শিফট ম্যানেজার UI</div>
     </div>
   </div>
+
+  <!-- Left: Calendar -->
+  <div class="card" id="calendarCard" aria-label="December 2025 calendar">
+    <div class="calendar-title">
+      <h2>December 2025</h2>
+      <div style="font-size:13px;color:var(--muted)">শুধু ডিসেম্বর ২০২৫</div>
+    </div>
+
+    <div class="calendar-grid" id="calendar">
+      <!-- weekdays -->
+      <div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div>
+      <div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="weekday">Sun</div>
+      <!-- days injected by JS -->
+    </div>
+
+    <div class="selected-info" id="selInfo">কোনও দিন সিলেক্ট করা নেই</div>
+
+    <div class="actions">
+      <button class="btn" id="okBtn">OK</button>
+      <button class="btn secondary" id="clearBtn">Clear</button>
+    </div>
+  </div>
+
+  <!-- Right: Shift tables -->
+  <div class="panels">
+    <div class="shift-card" id="aShiftCard"><h3>A Shift</h3><div id="aShiftBody"></div></div>
+    <div class="shift-card" id="bShiftCard"><h3>B Shift</h3><div id="bShiftBody"></div></div>
+    <div class="shift-card" id="cShiftCard"><h3>C Shift</h3><div id="cShiftBody"></div></div>
+    <div class="shift-card" id="offShiftCard"><h3>Off Day</h3><div id="offShiftBody"></div></div>
+  </div>
+</div>
 
 <script>
 (function(){
   const month = 11; // December
   const year = 2025;
-  const daysInMonth = 30;
+  const daysInMonth = 31;
   const firstWeekday = new Date(year, month, 1).getDay();
   const firstIndex = (firstWeekday + 6) % 7; // Monday-first
 
   // -------------------- শিফট ডেটা --------------------
   const shiftData = {
-    1:{a:["মোঃ দেলোয়ার হোসেন", "মোঃ সজিব আহমেদ", "মো বকুল", "মো রায়হান মিয়া", "মোঃ রাসেল মিয়া", "মোঃ রাজু ইসলাম", "মোঃ তৈবুর রহমান", "মো নাঈম হোসেন", "মিঃ রতন চন্দ্র বর্মন", "মোঃ বদরুল আলম", "সৈয়দ মিজানুর", "মোঃ আমির আলী", "মিঃ ভানুন সং বম", "মোঃ আল আমিন", "মোঃ মিজানুর রহমান", "মোঃ এনামুল হক", "আব্দুল কাদের", "মোঃ মনিরুল ইসলাম"], b:["মোঃ  লিয়াকত আলী", "মোঃ রাসেল আলী", "মোঃ মোস্তফা", "মোঃ বাইজিদ হোসেন", "মোঃ হাবিবুল্লাহ খান", "মোঃ মিনহাজুল ইসলাম", "মোঃ নাসিম হোসেন", "মোঃ এমদাদুল হক", "মোঃ আল মামুন", "মোঃ রমজান আলী", "মোঃ মনজুরুল ইসলাম", "মোঃ কবির হোসেন", "মোঃ রেজাউল করিম", "মিঃ কুশল চন্দ্র", "মোঃ আনোয়ার হোসেন", "মোঃ আজাদ", "আব্দুর রহমান", "মিঃ ডন খুঁম বম"], off:["মোঃ শাহিন আলম", "মোঃ আব্দুল খালেক", "মিঃ বাবুরাম চন্দ্র", "মোঃ মিনাল মোল্লা", "মোঃ জেনারুল ইসলাম", "মোঃ রবিউল ইসলাম", "মিঃ কালাচাঁদ মালি", "মোঃ খশরুজ্জামান"]},
-    2:{a:["মোঃ লিয়াকত আলী","মোঃ মোস্তফা"], b:["মোঃ দেলোয়ার হোসেন","মোঃ সজিব আহমেদ"], off:["মো বকুল","মোঃ বাইজিদ হোসেন"]},
-    3:{a:["মো রায়হান মিয়া","মোঃ শাহিন আলম"], b:["মোঃ বাবুরাম চন্দ্র","মোঃ মিনাল মোল্লা"], off:["মোঃ জেনারুল ইসলাম","মোঃ রবিউল ইসলাম"]},
-    4:{a:["মোঃ খশরুজ্জামান","মোঃ রাসেল মিয়া"], b:["মোঃ হাবিবুল্লাহ খান","মোঃ রাজু ইসলাম"], off:["মোঃ মিনহাজুল ইসলাম","মোঃ তৈবুর রহমান"]},
-    5:{a:["মোঃ নাসিম হোসেন","মো নাঈম হোসেন"], b:["মোঃ এমদাদুল হক","মিঃ রতন চন্দ্র বর্মন"], off:["মোঃ আল মামুন","মোঃ বদরুল আলম"]},
-    6:{a:["মোঃ রমজান আলী","সৈয়দ মিজানুর"], b:["মোঃ মনজুরুল ইসলাম","মোঃ আমির আলী"], off:["মোঃ কবির হোসেন","মিঃ ভানুন সং বম"]},
-    7:{a:["মোঃ রেজাউল করিম","মোঃ আল আমিন"], b:["মিঃ কুশল চন্দ্র","মোঃ মিজানুর রহমান"], off:["মোঃ আনোয়ার হোসেন","মোঃ এনামুল হক"]},
-    8:{a:["মোঃ আজাদ","আব্দুল কাদের"], b:["আব্দুর রহমান","মোঃ মনিরুল ইসলাম"], off:["মিঃ ডন খুঁম বম","মোঃ লিয়াকত আলী"]},
-    // ... অবশিষ্ট ৯–৩০ সংখ্যা জন্যও এভাবে রাখতে হবে
+    1:{a:["মোঃ দেলোয়ার হোসেন","মোঃ সজিব আহমেদ"], b:["মোঃ লিয়াকত আলী","মোঃ রাসেল আলী"], c:["মোঃ সামিউল হক"], off:["মোঃ শাহিন আলম","মোঃ আব্দুল খালেক"]},
+    2:{a:["মোঃ লিয়াকত আলী","মোঃ মোস্তফা"], b:["মোঃ দেলোয়ার হোসেন","মোঃ সজিব আহমেদ"], c:["মোঃ রিফাত হাসান"], off:["মো বকুল","মোঃ বাইজিদ হোসেন"]},
+    3:{a:["মো রায়হান মিয়া","মোঃ শাহিন আলম"], b:["মোঃ বাবুরাম চন্দ্র","মোঃ মিনাল মোল্লা"], c:["মোঃ কামরুল ইসলাম"], off:["মোঃ জেনারুল ইসলাম","মোঃ রবিউল ইসলাম"]},
+    4:{a:["মোঃ খশরুজ্জামান","মোঃ রাসেল মিয়া"], b:["মোঃ হাবিবুল্লাহ খান","মোঃ রাজু ইসলাম"], c:["মোঃ নাজমুল হক"], off:["মোঃ মিনহাজুল ইসলাম","মোঃ তৈবুর রহমান"]},
+    5:{a:["মোঃ নাসিম হোসেন","মো নাঈম হোসেন"], b:["মোঃ এমদাদুল হক","মিঃ রতন চন্দ্র বর্মন"], c:["মোঃ ফারুক"], off:["মোঃ আল মামুন","মোঃ বদরুল আলম"]},
+    6:{a:["মোঃ রমজান আলী","সৈয়দ মিজানুর"], b:["মোঃ মনজুরুল ইসলাম","মোঃ আমির আলী"], c:["মোঃ লিটন"], off:["মোঃ কবির হোসেন","মিঃ ভানুন সং বম"]},
+    7:{a:["মোঃ রেজাউল করিম","মোঃ আল আমিন"], b:["মিঃ কুশল চন্দ্র","মোঃ মিজানুর রহমান"], c:["মোঃ রিয়াজ"], off:["মোঃ আনোয়ার হোসেন","মোঃ এনামুল হক"]},
+    8:{a:["মোঃ আজাদ","আব্দুল কাদের"], b:["আব্দুর রহমান","মোঃ মনিরুল ইসলাম"], c:["মোঃ জসিম"], off:["মিঃ ডন খুঁম বম","মোঃ লিয়াকত আলী"]},
+    // 9–31 দিনগুলোর জন্য প্রয়োজনে একই ফরম্যাটে c অ্যারে যোগ করুন
   };
 
   // -------------------- DOM references --------------------
@@ -218,6 +192,7 @@
   const clearBtn = document.getElementById('clearBtn');
   const aBody = document.getElementById('aShiftBody');
   const bBody = document.getElementById('bShiftBody');
+  const cBody = document.getElementById('cShiftBody');
   const offBody = document.getElementById('offShiftBody');
 
   let selectedDay = null;
@@ -254,16 +229,17 @@
   // -------------------- Table rendering --------------------
   function renderSelectedDay(){
     if(!selectedDay){
-      aBody.innerHTML=bBody.innerHTML=offBody.innerHTML='<div class="empty">তারিখ সিলেক্ট করুন বাম দিক থেকে</div>';
+      aBody.innerHTML=bBody.innerHTML=cBody.innerHTML=offBody.innerHTML='<div class="empty">তারিখ সিলেক্ট করুন বাম দিক থেকে</div>';
       return;
     }
     const data = shiftData[selectedDay];
     if(!data){
-      aBody.innerHTML=bBody.innerHTML=offBody.innerHTML='<div class="empty">এই তারিখে কোনো ডাটা নেই</div>';
+      aBody.innerHTML=bBody.innerHTML=cBody.innerHTML=offBody.innerHTML='<div class="empty">এই তারিখে কোনো ডাটা নেই</div>';
       return;
     }
     renderList(aBody, data.a);
     renderList(bBody, data.b);
+    renderList(cBody, data.c);
     renderList(offBody, data.off);
   }
 
@@ -291,7 +267,7 @@
     createRipple(e);
     if(!selectedDay){ alert('সাফ করার জন্য আগে দিন সিলেক্ট করুন'); return; }
     if(!confirm('এই তারিখের সব তথ্য মুছে ফেলবেন?')) return;
-    shiftData[selectedDay]={a:[],b:[],off:[]};
+    shiftData[selectedDay]={a:[],b:[],c:[],off:[]};
     renderSelectedDay();
   });
 
