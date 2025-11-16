@@ -5,120 +5,149 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>মেট্রো নিটিং এন্ড ডাইং মিলস (ফ্যাক্টরি ২)</title>
 <style>
-  :root{
-    --bg:#f4f7f5;
-    --card:#ffffff;
-    --accent:#1e7a3a;
-    --muted:#6b7280;
-    --glass: rgba(255,255,255,0.6);
-    --radius:14px;
-  }
-  *{box-sizing:border-box;font-family: 'Segoe UI', Roboto, Arial, sans-serif}
-  body{
-    margin:0;
-    background:linear-gradient(180deg,#eef7ee 0%, #f4f7f5 100%);
-    min-height:100vh;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    padding:30px;
-    color:#0b2a17;
-  }
-  .container{
-    width:100%;
-    max-width:1100px;
-    margin:10px;
-    display:grid;
-    grid-template-columns: 420px 1fr;
-    gap:20px;
-    align-items:start;
-  }
-  .header{
-    grid-column: 1 / -1;
-    background:var(--card);
-    border-radius:var(--radius);
-    padding:22px;
-    box-shadow: 0 10px 30px rgba(18,70,34,0.06);
-    display:flex;
-    gap:20px;
-    align-items:center;
-    animation:fadeUp .45s ease both;
-  }
-  .brand{
-    flex:1;
-  }
-  .brand h1{
-    margin:0;font-size:20px;color:var(--accent);
-    letter-spacing:.2px;
-  }
-  .brand p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
-  .card{
-    background:var(--card);
-    border-radius:var(--radius);
-    padding:18px;
-    box-shadow: 0 8px 24px rgba(16,64,30,0.05);
-    animation:fadeUp .45s ease both;
-  }
-  .calendar-title{
-    display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;
-  }
-  .calendar-title h2{margin:0;font-size:16px;color:var(--accent)}
-  .calendar-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:8px;
-    align-items:center;
-  }
-  .weekday{font-size:12px;color:var(--muted);text-align:center}
-  .day{
-    height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-    cursor:pointer; user-select:none;
-    transition:transform .12s ease, box-shadow .12s ease;
-    background:linear-gradient(180deg,#fff,#fbfffb);
-    box-shadow: 0 2px 6px rgba(12,50,20,0.03);
-    color:#083014;
-  }
-  .day:hover{transform:translateY(-4px)}
-  .day.disabled{opacity:.15;cursor:not-allowed;transform:none}
-  .day.selected{
-    background:linear-gradient(180deg,var(--accent), #2aa24a);
-    color:white;
-    box-shadow: 0 8px 24px rgba(33,112,58,0.18);
-  }
-  .actions{display:flex;gap:10px;align-items:center;margin-top:14px}
-  .btn{
-    padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600;
-    background:var(--accent);color:#fff;box-shadow: 0 6px 18px rgba(30,122,58,0.18);
-    position:relative; overflow:hidden;
-  }
-  .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(30,122,58,0.12); font-weight:700}
-  .btn:active{transform:scale(.995)}
-  .ripple{
-    position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s linear;
-    background:rgba(255,255,255,0.4);
-  }
-  @keyframes ripple{to{transform:scale(4);opacity:0}}
-  .panels{display:grid;gap:14px}
-  .shift-card{
-    background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(10,30,20,0.04);
-    animation:fadeUp .45s ease both;
-  }
-  .shift-card h3{margin:0 0 8px 0;color:var(--accent)}
-  table{width:100%;border-collapse:collapse}
-  th,td{padding:10px 8px;text-align:left;border-bottom:1px dashed rgba(0,0,0,0.04)}
-  th{font-size:13px;color:var(--muted)}
-  .empty{color:var(--muted);padding:14px;text-align:center}
-  .row-actions{display:flex;gap:6px;justify-content:flex-end}
-  .icon-btn{border:none;background:transparent;cursor:pointer;font-weight:700;color:var(--accent)}
-  .small-input{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
-  .add-row{display:flex;gap:8px;margin-top:10px}
-  .add-row .btn{padding:8px 12px;font-size:14px;border-radius:10px}
-  @media (max-width:980px){
-    .container{grid-template-columns:1fr; padding:10px}
-  }
-  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-  .selected-info{font-size:13px;color:var(--muted);margin-top:8px}
+:root{
+  --bg:#f4f7f5;
+  --card:#ffffff;
+  --accent:#1e7a3a;
+  --muted:#6b7280;
+  --glass: rgba(255,255,255,0.6);
+  --radius:14px;
+}
+*{box-sizing:border-box;font-family: 'Segoe UI', Roboto, Arial, sans-serif}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#eef7ee 0%, #f4f7f5 100%);
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:30px;
+  color:#0b2a17;
+}
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:10px;
+  display:grid;
+  grid-template-columns: 420px 1fr;
+  gap:20px;
+  align-items:start;
+}
+.header{
+  grid-column: 1 / -1;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow: 0 10px 30px rgba(18,70,34,0.06);
+  display:flex;
+  gap:20px;
+  align-items:center;
+  animation:fadeUp .45s ease both;
+}
+.brand{
+  flex:1;
+}
+.brand h1{
+  margin:0;font-size:20px;color:var(--accent);
+  letter-spacing:.2px;
+}
+.brand p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: 0 8px 24px rgba(16,64,30,0.05);
+  animation:fadeUp .45s ease both;
+}
+.calendar-title{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;
+}
+.calendar-title h2{margin:0;font-size:16px;color:var(--accent)}
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+  align-items:center;
+}
+.weekday{font-size:12px;color:var(--muted);text-align:center}
+.day{
+  height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer; user-select:none;
+  transition:transform .12s ease, box-shadow .12s ease;
+  background:linear-gradient(180deg,#fff,#fbfffb);
+  box-shadow: 0 2px 6px rgba(12,50,20,0.03);
+  color:#083014;
+}
+.day:hover{transform:translateY(-4px)}
+.day.disabled{opacity:.15;cursor:not-allowed;transform:none}
+.day.selected{
+  background:linear-gradient(180deg,var(--accent), #2aa24a);
+  color:white;
+  box-shadow: 0 8px 24px rgba(33,112,58,0.18);
+}
+.actions{display:flex;gap:10px;align-items:center;margin-top:14px}
+.btn{
+  padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600;
+  background:var(--accent);color:#fff;box-shadow: 0 6px 18px rgba(30,122,58,0.18);
+  position:relative; overflow:hidden;
+}
+.btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(30,122,58,0.12); font-weight:700}
+.btn:active{transform:scale(.995)}
+.ripple{
+  position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s linear;
+  background:rgba(255,255,255,0.4);
+}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+.panels{display:grid;gap:14px}
+
+/* Shift card styling */
+.shift-card{
+  background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(10,30,20,0.04);
+  animation:fadeUp .45s ease both;
+}
+.shift-card h3{
+  margin:0 0 12px 0;
+  color:var(--accent);
+  text-align:center;
+  font-size:18px;
+  letter-spacing:0.5px;
+  font-weight:700;
+  position:relative;
+}
+.shift-card table{
+  width:100%;
+  border-collapse:collapse;
+}
+.shift-card table thead th{
+  background: linear-gradient(90deg, #d4f5d4, #a3e8a3);
+  color:#0b2a17;
+  font-weight:700;
+  border-bottom:2px solid var(--accent);
+  text-align:center;
+  padding:12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius:8px 8px 0 0;
+}
+.shift-card table thead th:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(30,122,58,0.25);
+}
+.shift-card table tbody td{text-align:center}
+.shift-card table tbody tr:hover{
+  background: rgba(30,122,58,0.05);
+  transition: background 0.25s ease;
+}
+.empty{color:var(--muted);padding:14px;text-align:center}
+
+.add-row{display:flex;gap:8px;margin-top:10px}
+.add-row .btn{padding:8px 12px;font-size:14px;border-radius:10px}
+
+@media (max-width:980px){
+  .container{grid-template-columns:1fr; padding:10px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.selected-info{font-size:13px;color:var(--muted);margin-top:8px}
 </style>
 </head>
 <body>
@@ -134,21 +163,16 @@
   </div>
 
   <!-- Left: Calendar -->
-  <div class="card" id="calendarCard" aria-label="December 2025 calendar">
+  <div class="card" id="calendarCard">
     <div class="calendar-title">
       <h2>December 2025</h2>
       <div style="font-size:13px;color:var(--muted)">শুধু ডিসেম্বর ২০২৫</div>
     </div>
-
     <div class="calendar-grid" id="calendar">
-      <!-- weekdays -->
       <div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div>
       <div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="weekday">Sun</div>
-      <!-- days injected by JS -->
     </div>
-
     <div class="selected-info" id="selInfo">কোনও দিন সিলেক্ট করা নেই</div>
-
     <div class="actions">
       <button class="btn" id="okBtn">OK</button>
       <button class="btn secondary" id="clearBtn">Clear</button>
@@ -172,7 +196,7 @@
   const firstWeekday = new Date(year, month, 1).getDay();
   const firstIndex = (firstWeekday + 6) % 7; // Monday-first
 
-  // -------------------- শিফট ডেটা --------------------
+  // Shift data
   const shiftData = {
     1:{a:["মোঃ দেলোয়ার হোসেন","মোঃ সজিব আহমেদ"], b:["মোঃ লিয়াকত আলী","মোঃ রাসেল আলী"], c:["মোঃ সামিউল হক"], off:["মোঃ শাহিন আলম","মোঃ আব্দুল খালেক"]},
     2:{a:["মোঃ লিয়াকত আলী","মোঃ মোস্তফা"], b:["মোঃ দেলোয়ার হোসেন","মোঃ সজিব আহমেদ"], c:["মোঃ রিফাত হাসান"], off:["মো বকুল","মোঃ বাইজিদ হোসেন"]},
@@ -182,10 +206,9 @@
     6:{a:["মোঃ রমজান আলী","সৈয়দ মিজানুর"], b:["মোঃ মনজুরুল ইসলাম","মোঃ আমির আলী"], c:["মোঃ লিটন"], off:["মোঃ কবির হোসেন","মিঃ ভানুন সং বম"]},
     7:{a:["মোঃ রেজাউল করিম","মোঃ আল আমিন"], b:["মিঃ কুশল চন্দ্র","মোঃ মিজানুর রহমান"], c:["মোঃ রিয়াজ"], off:["মোঃ আনোয়ার হোসেন","মোঃ এনামুল হক"]},
     8:{a:["মোঃ আজাদ","আব্দুল কাদের"], b:["আব্দুর রহমান","মোঃ মনিরুল ইসলাম"], c:["মোঃ জসিম"], off:["মিঃ ডন খুঁম বম","মোঃ লিয়াকত আলী"]},
-    // 9–31 দিনগুলোর জন্য প্রয়োজনে একই ফরম্যাটে c অ্যারে যোগ করুন
   };
 
-  // -------------------- DOM references --------------------
+  // DOM references
   const calendarEl = document.getElementById('calendar');
   const selInfo = document.getElementById('selInfo');
   const okBtn = document.getElementById('okBtn');
@@ -197,7 +220,6 @@
 
   let selectedDay = null;
 
-  // -------------------- Calendar build --------------------
   function buildCalendar(){
     for(let i=0;i<firstIndex;i++){
       const slot = document.createElement('div'); slot.className='day disabled'; calendarEl.appendChild(slot);
@@ -215,9 +237,7 @@
     }
   }
 
-  function clearSelectedClass(){
-    document.querySelectorAll('.day.selected').forEach(el=>el.classList.remove('selected'));
-  }
+  function clearSelectedClass(){document.querySelectorAll('.day.selected').forEach(el=>el.classList.remove('selected'))}
 
   function selectDay(d, el){
     clearSelectedClass();
@@ -226,7 +246,6 @@
     selInfo.textContent = `সিলেক্ট করা: ${selectedDay} ডিসেম্বর ২০২৫`;
   }
 
-  // -------------------- Table rendering --------------------
   function renderSelectedDay(){
     if(!selectedDay){
       aBody.innerHTML=bBody.innerHTML=cBody.innerHTML=offBody.innerHTML='<div class="empty">তারিখ সিলেক্ট করুন বাম দিক থেকে</div>';
@@ -254,7 +273,6 @@
     container.appendChild(table);
   }
 
-  // -------------------- Button handlers --------------------
   okBtn.addEventListener('click', (e)=>{
     createRipple(e);
     if(!selectedDay){ alert('দয়া করে একটি দিন সিলেক্ট করুন'); return; }
